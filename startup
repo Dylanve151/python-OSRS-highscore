@@ -9,7 +9,7 @@ if [ ! -f "$DBCONFIGFILE" ]; then
   echo "password=${db_password}" >> $DBCONFIGFILE
 fi
 
-OSRSPLAYERSFILE=/config/osrs_players.txt
+OSRSPLAYERSFILE=/config/osrs_players
 if [ ! -f "$OSRSPLAYERSFILE" ]; then
   touch $OSRSPLAYERSFILE
   for PLAYER in "${osrs_players[@]}"; do
