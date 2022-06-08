@@ -15,7 +15,7 @@ RUN python3 -m pip install \
   requests \
   configparser \
   psycopg2-binary
-COPY config.py /scrips/config.py
+COPY config.py /scripts/config.py
 COPY osrsHighscore.py /scripts/osrsHighscore.py
 COPY osrshc.bash /etc/cron.hourly/osrshc.bash
 COPY startup .
