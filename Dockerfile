@@ -19,7 +19,7 @@ COPY config.py /scrips/config.py
 COPY osrsHighscore.py /scripts/osrsHighscore.py
 COPY osrshc.bash /etc/cron.hourly/osrshc.bash
 COPY startup .
-RUN chmod 775 /etc/cron.hourly/* && \
-  chmod 775 /startup
+RUN chmod 775 /etc/cron.hourly/* \
+  && chmod 775 /startup
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 CMD [ "/startup" ]
