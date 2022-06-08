@@ -8,8 +8,8 @@ import psycopg2
 import json
 
 #Change these:
-osrsusers = "Zezima","Torvesta"
-timezone = "+02"
+#osrsusers = "Zezima","Torvesta"
+timezone = "+00"
 
 #stat links
 hcuri = "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws"
@@ -20,6 +20,8 @@ hccatswr = requests.get(hccaturi).content
 hccatsoup = BeautifulSoup(hccatswr, 'html.parser').find(id="contentCategory").getText()
 hccats = [x for x in "".join([s for s in hccatsoup.splitlines(True) if s.strip("\r\n")]).replace("'","`").split("\n") if x]
 
+osrsusers = open("/config/osrs_players","r").readlines()
+
 #loads of stuff i am too lazy to explain
 HClist={}
 SQLTables={}
@@ -28,6 +30,7 @@ SQLData={}
 datetimestr=str(datetime.datetime.now()).split(".")[0]+timezone
 
 for osrsuser in osrsusers:
+    osrsuser.replace("/n","")
     hcwr = BeautifulSoup(requests.get(hcuri+"?player="+osrsuser).content, 'html.parser').getText().split("\n")
     HCu={}
     n=0
