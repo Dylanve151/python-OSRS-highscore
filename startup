@@ -11,10 +11,7 @@ fi
 
 OSRSPLAYERSFILE=/config/osrs_players
 if [ ! -f "$OSRSPLAYERSFILE" ]; then
-  touch $OSRSPLAYERSFILE
-  for PLAYER in "${osrs_players[@]}"; do
-    echo "$PLAYER" >> $OSRSPLAYERSFILE
-  done
+  echo "$osrs_players" >> $OSRSPLAYERSFILE
 fi
 
 cron -f
