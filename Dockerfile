@@ -3,6 +3,7 @@ ENV db_host 127.0.0.1
 ENV db_database osrsHighscore
 ENV db_user osrsHighscore
 ENV db_password password
+ENV osrs_players "zezima" "torvesta"
 RUN apt-get update && apt-get install -y \
   cron \
   python3 \
