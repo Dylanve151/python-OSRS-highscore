@@ -22,4 +22,4 @@ COPY startup .
 RUN chmod 775 /etc/cron.hourly/* \
   && chmod 775 /startup
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-CMD [ "startup" ]
+CMD [ "/startup" ]
