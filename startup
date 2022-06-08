@@ -11,7 +11,10 @@ fi
 
 OSRSPLAYERSFILE=/config/osrs_players
 if [ ! -f "$OSRSPLAYERSFILE" ]; then
-  echo "$osrs_players" >> $OSRSPLAYERSFILE
+  echo "$osrs_players" > $OSRSPLAYERSFILE
 fi
+
+tz=$(date +%z)
+echo ${tz::3} > /config/tz
 
 cron -f
