@@ -9,7 +9,7 @@ import json
 
 #Change these:
 #osrsusers = "Zezima","Torvesta"
-timezone = "+00"
+#timezone = "+00"
 
 #stat links
 hcuri = "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws"
@@ -21,6 +21,7 @@ hccatsoup = BeautifulSoup(hccatswr, 'html.parser').find(id="contentCategory").ge
 hccats = [x for x in "".join([s for s in hccatsoup.splitlines(True) if s.strip("\r\n")]).replace("'","`").split("\n") if x]
 
 osrsusers = open("/config/osrs_players","r").readlines()
+timezone = open("/config/tz","r").readlines()
 
 #loads of stuff i am too lazy to explain
 HClist={}
