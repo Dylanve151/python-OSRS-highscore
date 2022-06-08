@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DBCONFIGFILE=/config/database.ini
+if [ ! -f "$DBCONFIGFILE" ]; then
+  echo '[postgresql]' > $DBCONFIGFILE
+  echo "host=${db_host}" >> $DBCONFIGFILE
+  echo "database=${db_database}" >> $DBCONFIGFILE
+  echo "user=${db_user}" >> $DBCONFIGFILE
+  echo "password=${db_password}" >> $DBCONFIGFILE
+fi
+
+cron -f
