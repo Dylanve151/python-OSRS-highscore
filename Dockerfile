@@ -1,4 +1,8 @@
 FROM debian
+ENV db_host 127.0.0.1
+ENV db_database osrsHighscore
+ENV db_user osrsHighscore
+ENV db_password password
 RUN apt-get update && apt-get install -y \
   cron \
   python3 \
@@ -11,8 +15,11 @@ RUN python3 -m pip install \
   requests \
   configparser \
   psycopg2-binary
-VOLUME ["/etc/cron.hourly"]
-VOLUME ["/scripts"]
-VOLUME ["/config"]
+COPY config.py /scrips/config.py
+COPY osrsHighscore.py /scripts/osrsHighscore.py
+COPY osrshc.bash /etc/cron.hourly/osrshc.bash
+COPY startup .
+RUN chmod 775 /etc/cron.hourly/* && \
+  chmod 775 /startup
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-CMD [ "cron -f" ]
+CMD [ "/startup" ]
