@@ -9,4 +9,12 @@ if [ ! -f "$DBCONFIGFILE" ]; then
   echo "password=${db_password}" >> $DBCONFIGFILE
 fi
 
+OSRSPLAYERSFILE=/config/osrs_players.txt
+if [ ! -f "$OSRSPLAYERSFILE" ]; then
+  touch $OSRSPLAYERSFILE
+  for PLAYER in "${osrs_players[@]}"; do
+    echo "$PLAYER" >> $OSRSPLAYERSFILE
+  done
+fi
+
 cron -f
