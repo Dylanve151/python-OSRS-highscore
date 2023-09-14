@@ -13,11 +13,15 @@ import json
 
 #stat links
 hcuri = "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws"
-hccaturi = "https://secure.runescape.com/m=hiscore_oldschool/overall"
+#hccaturi = "https://secure.runescape.com/m=hiscore_oldschool/overall"
+hccaturi = "https://runescape.wiki/w/Application_programming_interface"
 
 #getting all categories (skills, minigames, bosses and etc)
 hccatswr = requests.get(hccaturi).content
-hccatsoup = BeautifulSoup(hccatswr, 'html.parser').find(id="contentCategory").getText()
+hccatsoupSTAT = BeautifulSoup(hccatswr, 'html.parser').find("pre", string=re.compile("Attack")).getText()
+hccatsoupMG = BeautifulSoup(hccatswr, 'html.parser').find("pre", string=re.compile("TzTok-Jad")).getText()
+hccatsoup = hccatsoupSTAT + "----\n" + hccatsoupMG
+#hccatsoup = BeautifulSoup(hccatswr, 'html.parser').find(id="contentCategory").getText()
 hccats = [x for x in "".join([s for s in hccatsoup.splitlines(True) if s.strip("\r\n")]).replace("'","`").split("\n") if x]
 
 osrsusers = open("/config/osrs_players","r").readline().replace('"','').replace("\n","").split(",")
