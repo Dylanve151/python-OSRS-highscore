@@ -28,6 +28,11 @@ hccats = [x for x in "".join([s for s in hccatsoup.splitlines(True) if s.strip("
 osrsusers = open("/config/osrs_players","r").readline().replace('"','').replace("\n","").split(",")
 timezone = open("/config/tz","r").readlines()
 
+# for some reason its sometimes a list... idk why
+if isinstance(timezone, list):
+    timezone = timezone[0]
+
+
 #loads of stuff i am too lazy to explain
 HClist={}
 SQLTables={}
