@@ -6,6 +6,7 @@ import datetime
 import requests
 import psycopg2
 import json
+import re
 
 #Change these:
 #osrsusers = "Zezima","Torvesta"
