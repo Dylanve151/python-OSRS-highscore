@@ -1,0 +1,5 @@
+  bs4
+  datetime
+  requests
+  configparser
+  psycopg2-binary
