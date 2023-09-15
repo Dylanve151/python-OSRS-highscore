@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from bs4 import BeautifulSoup
-import datetime
+from datetime import datetime
 import requests
 import psycopg2
 import json
