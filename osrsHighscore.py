@@ -6,8 +6,10 @@ import requests
 import psycopg2
 import json
 import re
-import dotenv
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 db_database = os.getenv('db_database')
 db_host = os.getenv('db_host')
