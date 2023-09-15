@@ -1,5 +1,6 @@
-  bs4
-  datetime
-  requests
-  configparser
-  psycopg2-binary
+bs4
+datetime
+requests
+configparser
+psycopg2-binary
+dotenv
