@@ -19,13 +19,8 @@ osrs_players = os.getenv('osrs_players')
 
 conn_string = "host='"+db_host+"' dbname='"+db_database+"' user='"+db_user+"' password='"+db_password+"'"
 
-#Change these:
-#osrsusers = "Zezima","Torvesta"
-#timezone = "+00"
-
 #stat links
 hcuri = "https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws"
-#hccaturi = "https://secure.runescape.com/m=hiscore_oldschool/overall"
 hccaturi = "https://runescape.wiki/w/Application_programming_interface"
 
 #getting all categories (skills, minigames, bosses and etc)
@@ -33,24 +28,15 @@ hccatswr = requests.get(hccaturi).content
 hccatsoupSTAT = BeautifulSoup(hccatswr, 'html.parser').find("pre", string=re.compile("Attack")).getText()
 hccatsoupMG = BeautifulSoup(hccatswr, 'html.parser').find("pre", string=re.compile("TzTok-Jad")).getText()
 hccatsoup = hccatsoupSTAT + "----\n" + hccatsoupMG
-#hccatsoup = BeautifulSoup(hccatswr, 'html.parser').find(id="contentCategory").getText()
 hccats = [x for x in "".join([s for s in hccatsoup.splitlines(True) if s.strip("\r\n")]).replace("'","`").split("\n") if x]
 
-#osrsusers = open("/config/osrs_players","r").readline().replace('"','').replace("\n","").split(",")
 osrsusers = osrs_players.replace('"','').replace("\n","").split(",")
-#timezone = open("/config/tz","r").readlines()
-
-# for some reason its sometimes a list... idk why
-#if isinstance(timezone, list):
-#    timezone = timezone[0]
-
 
 #loads of stuff i am too lazy to explain
 HClist={}
 SQLTables={}
 SQLData={}
 
-#datetimestr=str(datetime.datetime.now()).split(".")[0]+timezone
 datetimestr=str(datetime.now().astimezone().isoformat(" ","seconds")[:-3])
 
 for osrsuser in osrsusers:
@@ -87,10 +73,7 @@ for osrsuser in osrsusers:
 def create_tables(params):
     conn = None
     try:
-        # read the connection parameters
-        #params = config()
         # connect to the PostgreSQL server
-        #conn = psycopg2.connect(**params)
         conn = psycopg2.connect(params)
         cur = conn.cursor()
         # create table one by one
