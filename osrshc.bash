@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python3 /scripts/osrsHighscore.py
+cd /scripts
+python3 osrsHighscore.py
