@@ -10,12 +10,7 @@ RUN apt-get update && apt-get install -y \
   python3-pip \
   && apt-get clean
 RUN echo '0 */1 * * * root /etc/cron.hourly/* > /proc/1/fd/1 2>/proc/1/fd/2' >> /etc/crontab
-RUN python3 -m pip install \
-  bs4 \
-  datetime \
-  requests \
-  configparser \
-  psycopg2-binary
+RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY config.py /scripts/config.py
 COPY osrsHighscore.py /scripts/osrsHighscore.py
 COPY osrshc.bash /etc/cron.hourly/osrshc.bash
