@@ -27,7 +27,8 @@ hccaturi = "https://runescape.wiki/w/Application_programming_interface"
 hccatswr = requests.get(hccaturi).content
 hccatsoupSTAT = BeautifulSoup(hccatswr, 'html.parser').find("pre", string=re.compile("Attack")).getText()
 hccatsoupMG = BeautifulSoup(hccatswr, 'html.parser').find("pre", string=re.compile("TzTok-Jad")).getText()
-hccatsoup = hccatsoupSTAT + "----\n" + hccatsoupMG
+#hccatsoup = hccatsoupSTAT + "----\n" + hccatsoupMG
+hccatsoup = hccatsoupSTAT + hccatsoupMG
 hccats = [x for x in "".join([s for s in hccatsoup.splitlines(True) if s.strip("\r\n")]).replace("'","`").split("\n") if x]
 
 osrsusers = osrs_players.replace('"','').replace("\n","").split(",")
